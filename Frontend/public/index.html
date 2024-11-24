@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree Manager</title>
+</head>
+<body>
+    <h1>Gerenciador de Árvores Binárias</h1>
+    <button id="generateTree">Gerar Árvore</button>
+    <input id="treeId" type="number" placeholder="ID da Árvore">
+    <button id="exportTree">Exportar paraf CSV</button>
+    <script>
+       (function(){
+        try{
+            document.getElementById('generateTree').addEventListener('click', () => {
+          fetch('http://localhost:3000/index.html', { method: 'POST' })
+          .then((res) => res.text()) // Pegando a resposta como texto
+          .then((text) => {
+            console.log(text); // Verifique o que está sendo retornado pelo servidor
+            try {
+                const data = JSON.parse(text); // Tente converter para JSON
+                alert(`Árvore criada com ID: ${data.treeId}`);
+            } catch (erro) {
+                console.error('Erro ao processar JSON:', err);
+            }
+        })
+        .catch((err) => console.error(erro));
+});
+        }catch(error){
+            console.error(error.message);
+        }finally{
+            alert('Fim de programa.')
+        }
+       }())
+
+
+    </script>
+</body>
+</html>
